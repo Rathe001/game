@@ -3,6 +3,12 @@ class User {
         this.name = params ? params.name || 'Joe' : 'Joe';
         this.class = '';
         this.race = '';
+
+        this.maxHp = '?';
+        this.currentHp = '?';
+
+        this.maxMana = '?';
+        this.currentMana = '?';
     }
 
     getName() {
@@ -19,13 +25,25 @@ class User {
         switch(c) {
             case 'r':
             case 'rogue':
-                this.class = new Classes.Rogue();
+                this.setClassRogue();
                 break;
             case 'm':
             case 'mage':
-                this.class = new Classes.Mage();
+                this.setClassMage();
                 break;
         }
+    }
+
+    setClassRogue() {
+        this.class = new Classes.Rogue();
+        this.resetHp(100);
+        this.resetMana(80);
+    }
+
+    setClassMage() {
+        this.class = new Classes.Mage();
+        this.resetHp(80);
+        this.resetMana(100);
     }
 
     setRace(r) {
@@ -34,12 +52,44 @@ class User {
         switch(r) {
             case 'd':
             case 'demon':
-                this.race = new Races.Demon();
-                break;
+                return this.setRaceDemon();
             case 'h':
             case 'human':
-                this.race = new Races.Human();
-                break;
+                return this.setRaceHuman();
         }
+    }
+
+    setRaceDemon() {
+        this.race = new Races.Demon();
+    }
+
+    setRaceHuman() {
+        this.race = new Races.Human();
+    }
+
+    resetHp(val) {
+        this.maxHp = val;
+        this.currentHp = val;
+    }
+
+    setCurrenttHp(val) {
+        this.currentHp = val;
+    }
+
+    setMaxtHp(val) {
+        this.currentHp = val;
+    }
+
+    resetMana(val) {
+        this.maxMana = val;
+        this.currentMana = val;
+    }
+
+    setCurrentMana(val) {
+        this.currentMana = val;
+    }
+
+    setMaxMana(val) {
+        this.maxMana = val;
     }
 }
